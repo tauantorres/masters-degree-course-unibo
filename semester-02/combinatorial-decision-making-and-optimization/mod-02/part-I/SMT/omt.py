@@ -1,0 +1,12 @@
+from z3 import *
+x, y = Reals('x y')
+A1, A2 = Bools('A1 A2')
+s = Optimize()
+s.add(Or(Not(A1), 2*x + y >= -2))
+s.add(Or(A1, x + y >= 3))
+s.add(Or(Not(A2), 4*x - y >= -4))
+s.add(Or(A2, 2*x - y >= -6))
+z = s.minimize(x)
+print(s.check())
+print(s.model())
+print(z.value())

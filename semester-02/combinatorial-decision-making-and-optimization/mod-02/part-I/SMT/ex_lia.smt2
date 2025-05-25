@@ -1,0 +1,20 @@
+(declare-const x1 Int)
+(declare-const x2 Int)
+(declare-const x3 Int)
+(declare-const x4 Int)
+(declare-const x5 Int)
+(declare-const P1 Bool)
+(declare-const P2 Bool)
+; (2x2 - x3 > 2) ∨ P1
+(assert (or (> (- (* 2 x2) x3) 2) P1))
+; ¬P2 ∨ x1 - x5 <= 1
+(assert (or (not P2) (<= (- x1 x5) 1)))
+(assert (or (> (- (* 3 x1) (* 2 x2)) 3) (not P2)))
+(assert (or (> (- (* 3 x1) x3) 6) (not P1)))
+(assert (or P1 (<= (* 3 x1) (* 2 x2))))
+(assert (or (<= (- x2 x4) 6) (not P1)))
+(assert (or P1 (= x3 (+ (* 3 x5) 4)) (not P2)))
+(assert (or P2 (>= (- (* 2 x2) (* 3 x1)) 5) (>= (+ x3 x5 (* (- 4) x1)) 0)))
+(check-sat)
+;(get-model)
+
